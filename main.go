@@ -1,6 +1,7 @@
 package baseEmoji
 
 import (
+    "bytes"
     "encoding/base64"
     "fmt"
     "io/ioutil"
@@ -72,6 +73,11 @@ func (enc *Encoding) Decode(input []byte) ([]byte, error) {
     b64 := []byte{}
     inputEmoji := []Emoji{}
 
+    // Remove the UTF8 BOM if it exists
+    if len(input) >= len(Utf8Header) && bytes.Equal(input[0:len(Utf8Header)-1], Utf8Header) {
+        input = input[len(Utf8Header):]
+    }
+
     for len(input) > 0 {
         r, size := utf8.DecodeRune(input)
         inputEmoji = append(inputEmoji, Emoji(r))
@@ -79,7 +85,7 @@ func (enc *Encoding) Decode(input []byte) ([]byte, error) {
         input = input[size:]
     }
 
-    for idx, em := range inputEmoji[1:] {
+    for idx, em := range inputEmoji {
         r, _ := utf8.DecodeRune([]byte(em))
         char, ok := enc.decodeMap[em]
         if !ok {
@@ -97,7 +103,6 @@ func (es *EmojiString) WriteFile(filename string) error {
 
 func (es *EmojiString) ToBytes() []byte {
     b := []byte{}
-    b = append(b, Utf8Header...)
 
     for _, e := range *es {
         b = append(b, []byte(e)...)
