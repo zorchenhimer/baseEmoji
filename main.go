@@ -1,3 +1,12 @@
+/*
+Package baseEmoji implements baseEmoji encoding as specified by absolutely
+nobody.
+
+baseEmoji is similar to base64 only it uses emoji to encode a given set of data
+instead of the more common a-zA-Z0-9+/= character set.
+
+You probably shouldn't use this in any kind of serious production environment.
+*/
 package baseEmoji
 
 import (
