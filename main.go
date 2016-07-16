@@ -8,6 +8,7 @@ import (
     "unicode/utf8"
 )
 
+// Emoji is a single character "rune" encoded as a byte slice
 type Emoji string
 type EmojiString []Emoji
 
@@ -20,6 +21,7 @@ type Encoding struct {
 
 var DefaultEncoding *Encoding
 
+// Build the default encoding
 func init() {
     encode := EmojiString{
         u1F601, u1F602, u1F603, u1F604, u1F605, u1F606, u1F609, u1F60A, u1F60B, u1F60C,
@@ -38,6 +40,9 @@ func init() {
     }
 }
 
+// NewEncode returns a new Encoding given the EmojiString provided.  An error is
+// returned if there are not 65 characters in the EmojiString.  The last
+// character is the padding character.
 func NewEncode(emString EmojiString) (*Encoding, error) {
     if len(emString) != 65 {
         return nil, fmt.Errorf("EmojiString is not 65 characters long! (the 65th is the padding character)")
@@ -57,6 +62,8 @@ func NewEncode(emString EmojiString) (*Encoding, error) {
     return enc, nil
 }
 
+// Encode takes a byte slice and encodes it into an EmojiString encoded in 
+// UTF-8 bytes.  This does not add the UTF-8 Byte Order Mark (BOM).
 func (enc *Encoding) Encode(input []byte) (*EmojiString, error) {
     b64 := base64.StdEncoding.EncodeToString(input)
     es := EmojiString{}
@@ -69,6 +76,8 @@ func (enc *Encoding) Encode(input []byte) (*EmojiString, error) {
     return &es, nil
 }
 
+// Decode takes the input byte slice of UTF-8 encoded emoji and decodes it into
+// it's original binary blob as a byte slice.
 func (enc *Encoding) Decode(input []byte) ([]byte, error) {
     b64 := []byte{}
     inputEmoji := []Emoji{}
@@ -97,10 +106,13 @@ func (enc *Encoding) Decode(input []byte) ([]byte, error) {
     return base64.StdEncoding.DecodeString(string(b64))
 }
 
+// WriteFile writes the emoji string to the given filename.  This prepends the
+// UTF-8 BOM automatically.
 func (es *EmojiString) WriteFile(filename string) error {
     return ioutil.WriteFile(filename, append(Utf8Header, es.ToBytes()...), 0655)
 }
 
+// ToByte returns the EmojiString as a byte slice.  This does not prepend the UTF-8 BOM.
 func (es *EmojiString) ToBytes() []byte {
     b := []byte{}
 

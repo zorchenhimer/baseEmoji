@@ -4,7 +4,9 @@ package baseEmoji
 // padding character is appended.
 const encodeStd = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/="
 
-// UTF-8 byte order mark
+// UTF8Header is the UTF-8 byte order mark.  This needs to be prepended to text
+// files in order for viewers (browsers, text editors, etc) to display the UTF-8
+// encoded characters correctly.
 var Utf8Header []byte = []byte{0xEF, 0xBB, 0xBF}
 
 // Faces
