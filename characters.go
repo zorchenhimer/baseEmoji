@@ -71,7 +71,7 @@ var u1F63F Emoji = Emoji([]byte{0xF0, 0x9F, 0x98, 0xBF})  // cat crying
 //var u1F64C Emoji = Emoji([]byte{0xF0, 0x9F, 0x98, 0x4C})  // raised hands / \o/
 //var u1F64D Emoji = Emoji([]byte{0xF0, 0x9F, 0x98, 0x4D})  // frowning person
 //var u1F64E Emoji = Emoji([]byte{0xF0, 0x9F, 0x98, 0x4E})  // pouting person
-//var u1F64F Emoji = Emoji([]byte{0xF0, 0x9F, 0x98, 0x4F})  // foulded hands person
+//var u1F64F Emoji = Emoji([]byte{0xF0, 0x9F, 0x98, 0x4F})  // folded hands person
 // "dingbats"
 var u2702 Emoji = Emoji([]byte{0xE2, 0x9C, 0x82})  // black scissors
 var u2705 Emoji = Emoji([]byte{0xE2, 0x9C, 0x85})  // black scissors
