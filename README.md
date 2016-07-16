@@ -6,7 +6,7 @@ You probably shouldn't use this in any kind of serious production environment.
 
 ## Usage
 
-[[https://godoc.org/github.com/zorchenhimer/baseEmoji][https://godoc.org/github.com/zorchenhimer/baseEmoji?status.svg]]
+[![img](https://godoc.org/github.com/zorchenhimer/baseEmoji?status.svg)](https://godoc.org/github.com/zorchenhimer/baseEmoji)
 
 ```
     text := "Homura did nothing wrong."
