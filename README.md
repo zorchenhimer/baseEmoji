@@ -8,7 +8,7 @@ You probably shouldn't use this in any kind of serious production environment.
 
 [![img](https://godoc.org/github.com/zorchenhimer/baseEmoji?status.svg)](https://godoc.org/github.com/zorchenhimer/baseEmoji)
 
-```
+```go
     text := "Homura did nothing wrong."
     enc := baseEmoji.DefaultEncoding
     
