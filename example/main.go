@@ -4,7 +4,7 @@ import (
     "fmt"
     "os"
 
-    "../"
+    "github.com/zorchenhimer/baseEmoji"
 )
 
 func main() {
